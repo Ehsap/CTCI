@@ -130,7 +130,65 @@ def perm_palindrome(s):
 # pale,  ple  -> true
 # pales, pale -> true
 # pale,  bale -> true
-# pale,  bae  -> true
+# pale,  bae  -> false
+
+def one_away(s1, s2):
+    # Can't be one away if the length difference is bigger than 1
+    if abs(len(s1) - len(s2)) > 1:
+        return False
+    
+    count_away = 0
+
+    # Check: replace one character away
+    if len(s1) == len(s2):
+        for i in range(0,len(s1)):
+            if s1[i] != s2[i]:
+                count_away += 1
+            if count_away > 1: 
+                return False
+        return True 
+    else:
+    # Check: Insert one character away / remove one character away
+        index1 = 0 # Index for shorter string
+        index2 = 0 # Index for longer string 
+        shorter = min(s1, s2)
+        bigger = max(s1, s2)
+        while(index1 < len(shorter) and index2 < len(bigger)):
+            if shorter[index1] != bigger[index2]:
+                count_away += 1
+                index2 += 1
+            if count_away > 1:
+                return False
+            else:
+                index1 += 1
+                index2 += 1
+    return True
+
+# 1.6 String Compression: Implement a method to perform basic string compression 
+# using the counts of repeated characters. For example, the string aabcccccaaa 
+# would become a2blc5a3. If the "compressed"string would not become smaller 
+# than the original string, your method should return the original string. You 
+# can assume the string has only uppercase and lowercase letters (a - z).
+def compress_string(s):
+    if len(s) == 0 or len(s) == 1:
+        return s
+    
+    s = s.lower()
+    count = 0 # Number of repeated characters
+    compressed = ""
+    current = s[0]
+    for i in range(0, len(s)):
+        if s[i] == current:
+            count += 1
+            if i == len(s) - 1:
+                compressed += current + str(count)
+        else:
+            compressed += current + str(count)
+            current = s[i]
+            count = 1
+    return compressed
+    
+
 
 
     
