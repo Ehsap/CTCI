@@ -19,4 +19,26 @@ def num_pairs(a, k):
             if (pair[1], key) not in count:
                 count[(key, pair[1])] = True
     
-    return len(count) 
+    return len(count)
+
+# Example: Print all positive integer solutions to the equation a^3 + b^3 = c^2 + d^3 where
+# a,b,c, and d are integers between 1 and 1000
+# TODO:
+import math
+def solve_equation()
+    n = 1000
+    d = {} # {(c,d): []}
+    for c in range(1,n):
+        for d in range(1,n):
+            result = int(math.pow(c, 3) + math.pow(d, 3))
+            d[(c, d)] = result
+
+# Example: Given a smaller string s and a bigger string b, design an algorithm to find all 
+# permutations of the shorter string within the longer one. Print the location of each permutation.
+
+# Example: Design an algorithm to print all permutations of a string. 
+# For simplicity, assume all characters are unique.
+
+# Example: Numbers are randomly generated and stored into an (expanding) array. 
+# How would you keep track ofthe median?
+
