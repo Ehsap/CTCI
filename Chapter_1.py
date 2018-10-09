@@ -121,7 +121,7 @@ def perm_palindrome(s):
             return False
     return True 
 
-# One Away: There are three types of edits that can be performed on strings: 
+# 1.5 One Away: There are three types of edits that can be performed on strings: 
 # insert a character, remove a character, or replace a character.
 # Given two strings, write a function to check if they are one edit 
 # (or zero edits) away.
@@ -187,7 +187,19 @@ def compress_string(s):
             current = s[i]
             count = 1
     return compressed
-    
+
+# 1.7 Rotate Matrix: Given an image represented by an NxN matrix, where each
+# pixel in the image is 4 bytes, write a method to rotate the image by 90 degrees.
+# Can you do this in place?
+
+# 1.8 Zero Matrix: Write an algorithm such that if an element in an MxN matrix
+# is 0, its entire row and column are set to 0
+
+# 1.9 String Rotation: Assume you have a method isSubstring which checks if one
+# word is a substring of another. Given two strings, s1 and s2, write code to
+# check if s2 is a rotation of s1 using only one call to isSubstring
+# E.G: "waterbottle" is a rotation of "erbottlewat"
+
 
 
 
