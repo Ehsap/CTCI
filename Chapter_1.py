@@ -200,6 +200,28 @@ def compress_string(s):
 # check if s2 is a rotation of s1 using only one call to isSubstring
 # E.G: "waterbottle" is a rotation of "erbottlewat"
 
+# Bonus: is_palindrome
+def is_palindrome(s):
+    if len(s) == 0 or len(s) == 1:
+        return True
+
+    if len(s) == 2:
+        if s[0] == s[1]:
+            return True
+        else:
+            return False
+
+    head = 0
+    tail = len(s) -1 
+
+    while(head != tail):
+        if s[head] != s[tail]:
+            return False
+        head += 1
+        tail -= 1
+    return True 
+
+
 
 
 
