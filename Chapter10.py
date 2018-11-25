@@ -136,7 +136,48 @@ class Listy:
                 high = mid - 1
         return -1
 
-            
+# 10.5 Sparse Search
+# Given a sorted array of strings that is interspersed with
+# empty strings, write a method to find the location
+# of a given string.
+def sparse_search(A, value):
+    if len(A) == 0:
+        return -1
+    elif len(A) == 1:
+        if A[0] == value:
+            return 0
+        else:
+            return -1 
+    else:
+        return sparse_search_aux(A, value, 0, len(A)-1)
+
+def sparse_search_aux(A, value, low, high):
+    if (low > high):
+        return - 1
+    mid = (low + high) // 2
+    
+    if A[mid] == "":
+        left = mid-1
+        right = mid+1
+        while True:
+            if left < low and right > high:
+                return -1
+            elif right <= high and A[right] != "":
+                mid = right
+                break
+            elif left >= low and A[left] != "":
+                mid = left
+                break
+            right += 1
+            left -= 1
+
+    if A[mid] == value:
+        return mid
+    elif A[mid] < value:
+        return sparse_search_aux(A, value, mid+1, high)
+    else:
+        return sparse_search_aux(A, value, low, mid-1)
+
 class Tests(unittest.TestCase):
 
     def test_sorted_merge(self):
@@ -160,6 +201,9 @@ class Tests(unittest.TestCase):
         l.set_list([2,4,5,9,10,22,33,29])
         self.assertEqual(l.search(10), 4)
         self.assertEqual(l.search(29), -1)
+    
+    def test_sparse_search(self):
+        self.assertEqual(sparse_search(["at", "", "", "ball", "", "", "car"], "at"), 0)
     
 if __name__ == '__main__':
     unittest.main()
