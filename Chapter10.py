@@ -46,6 +46,30 @@ def sorted_merge(A, B):
         k += 1
     return A
 
+# 10.2 Group Anagrams: Write a method to sort an 
+# array of strings so that all the anagrams are next
+# to each other
+def group_anagrams(strings):
+    anagrams = []
+    anagram_indices = {} # "ate": [1,2,3]
+    # Sort every string and place into dictionary
+    for i in range(len(strings)):
+        sorted_word = ''.join(sorted(strings[i]))
+        if sorted_word not in anagram_indices:
+            anagram_indices[sorted_word] = [i]
+        else:
+            anagram_indices[sorted_word].append(i)
+    
+    # Build the anagram groupings
+    for indices in anagram_indices.values():
+        anagram_group = []
+        for index in indices:
+            anagram_group.append(strings[index])
+        anagrams.append(anagram_group)
+    return anagrams
+
+
+
 class Tests(unittest.TestCase):
 
     def test_sorted_merge(self):
@@ -57,7 +81,7 @@ class Tests(unittest.TestCase):
         self.assertEquals(sorted_merge(A, B), [1,2,5,8])
         A = [1, None]
         B = [2]
-        self.assertEquals(sorted_merge(A,B), [1,2])  
+        self.assertEquals(sorted_merge(A,B), [1,2])
     
 if __name__ == '__main__':
     unittest.main()
