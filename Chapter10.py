@@ -103,6 +103,40 @@ def search_rotated_array(A, k):
             return (mid + shifts) % len(A)
     return -1
 
+# 10.4 Sorted Search, No Size
+class Listy:
+    def __init__(self):
+        self.arr = []
+
+    def set_list(self, A):
+        self.arr = A
+    
+    def elementAt(self, i):
+        try:
+            return self.arr[i]
+        except IndexError:
+            return -1
+    
+    def search(self, x):
+        i = 1
+        while self.elementAt(i) != -1 and self.elementAt(i) < x:
+            i *= 2
+        return self.binarySearch(x, 0, i)
+    
+    def binarySearch(self, x, low, high):
+        mid = 0 
+        while low <= high:
+            mid = (low + high) // 2
+            middle = self.elementAt(mid)
+            if x == middle:
+                return mid
+            elif x > middle:
+                low = mid + 1
+            else:
+                high = mid - 1
+        return -1
+
+            
 class Tests(unittest.TestCase):
 
     def test_sorted_merge(self):
@@ -120,6 +154,12 @@ class Tests(unittest.TestCase):
         A = [15, 16, 19, 20, 25, 1, 3, 4, 5, 7, 10, 14]
         self.assertEquals(search_rotated_array(A, 5), 8)
         self.assertEquals(search_rotated_array(A, 21), -1)
+
+    def test_sorted_search_no_size(self):
+        l = Listy()
+        l.set_list([2,4,5,9,10,22,33,29])
+        self.assertEqual(l.search(10), 4)
+        self.assertEqual(l.search(29), -1)
     
 if __name__ == '__main__':
     unittest.main()
